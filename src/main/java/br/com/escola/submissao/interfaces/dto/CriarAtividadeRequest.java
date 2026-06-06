@@ -9,6 +9,6 @@ public record CriarAtividadeRequest(
         @NotBlank String titulo,
         String descricao,
         @NotNull LocalDate dataLimite,
-        @NotNull int pontuacaoMaxima
+        @NotNull Long pontuacaoMaxima
 ) {
 }

@@ -11,13 +11,13 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Pontuacao {
 
-    private int pontuacao;
+    private Long pontuacao;
 
     protected Pontuacao() {
         // Construtor protegido exigido pelo JPA.
     }
 
-    public Pontuacao(int pontuacao) {
+    public Pontuacao(Long pontuacao) {
         if (pontuacao < 0 || pontuacao > 100) {
             throw new IllegalArgumentException("A pontuacao deve estar entre 0 e 100.");
         }
@@ -25,7 +25,7 @@ public class Pontuacao {
         this.pontuacao = pontuacao;
     }
 
-    public int getPontuacao() {
+    public Long getPontuacao() {
         return pontuacao;
     }
 }

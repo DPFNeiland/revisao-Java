@@ -14,13 +14,15 @@ public record SubmissaoResponse(
         String emailEstudante,
         String atividade,
         LocalDateTime dataEnvio,
-        Double nota,
+        Long notamaxima,
+        Long nota,
         String comentarioProfessor,
         StatusSubmissao status
 
+
 ) {
     public static SubmissaoResponse fromEntity(Submissao submissao) {
-        Double valorNota = submissao.getNota() == null ? null : submissao.getNota().getValor();
+        Long valorNota = submissao.getNota() == null ? null : submissao.getNota().getValor();
 
         return new SubmissaoResponse(
                 submissao.getId(),
@@ -28,6 +30,7 @@ public record SubmissaoResponse(
                 submissao.getEstudante().getEmail().getValor(),
                 submissao.getAtividade().getTitulo(),
                 submissao.getDataEnvio(),
+                submissao.getAtividade().getPontuacaoMaxima().getPontuacao(),
                 valorNota,
                 submissao.getComentarioProfessor(),
                 submissao.getStatus()

@@ -10,6 +10,7 @@ import br.com.escola.submissao.infrastructure.repository.EstudanteRepository;
 import br.com.escola.submissao.infrastructure.repository.SubmissaoRepository;
 import br.com.escola.submissao.interfaces.dto.AvaliarSubmissaoRequest;
 import br.com.escola.submissao.interfaces.dto.CriarSubmissaoRequest;
+import br.com.escola.submissao.interfaces.dto.SubmissaoResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,6 +61,11 @@ public class SubmissaoService {
         if (submissao.getStatus() != StatusSubmissao.ENVIADA){
             throw new IllegalArgumentException("Submissão já avaliada.");
         }
+
+        if (request.nota() > submissao.getAtividade().getPontuacaoMaxima().getPontuacao()) {
+            throw new IllegalArgumentException("Nota maior que a pontuação máxima do teste");
+        }
+
 
         submissao.avaliar(new Nota(request.nota()), request.comentarioProfessor());
         return submissaoRepository.save(submissao);
