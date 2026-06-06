@@ -34,6 +34,14 @@ public class SubmissaoController {
                 .toList();
     }
 
+    @GetMapping("/atividade/{id}")
+    public List<SubmissaoResponse> listarPorAtividade(@PathVariable Long id){
+        return service.findByAtividade_Id(id)
+                .stream().
+                map(SubmissaoResponse::fromEntity).
+                toList();
+    }
+
     @GetMapping("/{id}")
     public SubmissaoResponse buscarPorId(@PathVariable Long id) {
         return SubmissaoResponse.fromEntity(service.buscarPorId(id));

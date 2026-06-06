@@ -55,6 +55,11 @@ public class SubmissaoService {
                 .orElseThrow(() -> new IllegalArgumentException("Submissão não encontrada."));
     }
 
+    public List<Submissao> findByAtividade_Id(Long id){
+
+        return submissaoRepository.findByAtividade_Id(id);
+    }
+
     public Submissao avaliar(Long id, AvaliarSubmissaoRequest request) {
         Submissao submissao = buscarPorId(id);
 

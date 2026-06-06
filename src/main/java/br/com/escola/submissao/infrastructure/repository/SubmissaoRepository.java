@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface SubmissaoRepository extends JpaRepository<Submissao, Long> {
+    List<Submissao> findByAtividade_Id(Long atividadeId);
 }
